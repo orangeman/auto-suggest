@@ -1,0 +1,22 @@
+{
+  "name": "auto-suggest",
+  "version": "0.0.14",
+  "description": "autocomplete inputtext",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orangeman/auto-suggest"
+  },
+  "keywords": [
+    "autosuggest",
+    "autocomplete"
+  ],
+  "author": "orange <flo@sonnenstreifen.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/orangeman/auto-suggest/issues"
+  }
+}
