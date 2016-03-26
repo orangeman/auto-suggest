@@ -44,7 +44,14 @@
       return hide();
     };
     suggest.onclick = function(e) {
-      return select(e.target);
+      var el;
+      el = e.target;
+      if (el.tagName !== "A") {
+        if ((el = el.parentNode).tagName !== "A") {
+          return;
+        }
+      }
+      return select(el);
     };
     input.onkeydown = function(e) {
       var end, k, start;

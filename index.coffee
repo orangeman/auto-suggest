@@ -20,7 +20,11 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
     slt = null
     hide()
   suggest.onclick = (e) ->
-    select e.target
+    el = e.target
+    if el.tagName != "A"
+      if (el = el.parentNode).tagName != "A"
+        return
+    select el
   input.onkeydown = (e) ->
     switch k = e.charCode || e.keyCode || 0
       when 27 # ESC
