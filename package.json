@@ -1,9 +1,10 @@
 {
   "name": "auto-suggest",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "autocomplete inputtext",
   "main": "index.js",
   "scripts": {
+    "build": "coffee -c index.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

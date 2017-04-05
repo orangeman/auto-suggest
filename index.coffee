@@ -15,7 +15,7 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
   select = (s) ->
     input.value = s.textContent if s
     text = s.textContent if s
-    onSelect()
+    onSelect(text)
     slt?.className = ""
     slt = null
     hide()
@@ -32,12 +32,13 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
       when 13 # ENTER
         select slt
       when 38 # UP
+        e.preventDefault()
         slt?.className = ""
         slt = slt?.previousSibling
         return hide() unless slt
         slt.className = "selected"
         if slt.offsetTop - suggest.scrollTop < slt.offsetHeight
-          suggest.scrollTop = slt.offsetTop - slt.offsetHeight
+          suggest.scrollTop = slt.offsetTop - slt.offsetHeight - 16
       when 40 # DOWN
         if !slt
           slt = suggest.firstChild
@@ -89,7 +90,7 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
         else #CHARACTER
           text = text.slice(0, start) + String.fromCharCode(k).toLowerCase() + text.slice end
         text = titleCase text
-        console.log "PRESS key=" + String.fromCharCode(k) + " code=" + e.keyCode + " text=" + text + "   caret " + input.selectionStart
+        #console.log "PRESS key=" + String.fromCharCode(k) + " code=" + e.keyCode + " text=" + text + "   caret " + input.selectionStart
         if text.length > 0
           autosuggest text, render
         else hide()
@@ -114,6 +115,7 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
         "<a>#{text}<span>#{rest}</span></a>"
       ).join('')
       show()
+      slt = null
 
   titleCase = (str) ->
     if str.length > 0
