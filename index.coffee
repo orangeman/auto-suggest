@@ -15,7 +15,7 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
   text = ""
   select = (s) ->
     input.value = s.textContent if s
-    div.value = s.textContent if s
+    div.value = titleCase input.value.split(",")[0].trim() if s
     text = s.textContent if s
     onSelect(text) if onSelect
     slt?.className = ""
@@ -124,7 +124,6 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
       str[0].toUpperCase() + str[1..str.length-1]
     else ""
 
-  value: () -> titleCase input.value.split(",")[0].trim()
   onselect: (fun) -> onSelect = fun
 
 cumulativeDelayed = () ->
