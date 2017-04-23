@@ -1,4 +1,5 @@
 module.exports = (div, autosuggest, defaultValue, onSelect) ->
+  return unless div
   suggest = div.getElementsByClassName("suggest")[0]
   hide = () -> suggest.style.display = "none"
   show = () -> suggest.style.display = "block" unless suggest.innerHTML == ""
@@ -75,7 +76,7 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
       when 16 # SHIFT
         return
       when 9 # TAB
-        return
+        select slt
       else
         #keydownDelayed()
         text = "" if !text || k == 70 # delete all?
