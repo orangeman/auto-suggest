@@ -5,13 +5,17 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
   show = () -> suggest.style.display = "block" unless suggest.innerHTML == ""
   input = div.getElementsByTagName("input")[0]
   input.value = defaultValue if defaultValue
-  div.value = titleCase input.value?.split(",")?[0]?.trim()
   input.onblur = () -> setTimeout (() -> hide()), 300
   input.onclick = () ->
     if suggest.style.display == "none"
       show()
     #else hide()
   #input.select()
+  titleCase = (str) ->
+    if str.length > 0
+      str[0].toUpperCase() + str[1..str.length-1]
+    else ""
+  div.value = titleCase input.value?.split(",")?[0]?.trim()
   slt = null
   text = ""
   select = (s) ->
@@ -119,11 +123,6 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
       ).join('')
       show()
       slt = null
-
-  titleCase = (str) ->
-    if str.length > 0
-      str[0].toUpperCase() + str[1..str.length-1]
-    else ""
 
   onselect: (fun) -> onSelect = fun
 
