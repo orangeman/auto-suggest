@@ -15,6 +15,7 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
   text = ""
   select = (s) ->
     input.value = s.textContent if s
+    div.value = s.textContent if s
     text = s.textContent if s
     onSelect(text) if onSelect
     slt?.className = ""
