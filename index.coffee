@@ -113,13 +113,13 @@ module.exports = (div, autosuggest, defaultValue, onSelect) ->
 
 
   render = (names) ->
-    if names.length == 0 || names[0] == ""
+    if names.length == 0 || names[0] == "" || names[0].match /not found/
       suggest.innerHTML = ""
       return hide()
     else
       suggest.innerHTML =
       names.map((rest) ->
-        "<a>#{text}<span>#{rest}</span></a>"
+          "<a>#{text}<span>#{rest}</span></a>"
       ).join('')
       show()
       slt = null
